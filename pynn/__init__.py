@@ -19,6 +19,7 @@ class Neural_Network():
         self.r2 = 0
         self.g = 0  # generation
         self.lyr = 0  # layers
+        self.lin = 0
 
         self.td = []  # training data
         self.ans = [] # expected answers
@@ -49,16 +50,20 @@ class Neural_Network():
             n += self.fdif(self.out[i],float(exp[i]))
         return n
 
-    def newlayer(self, sz,ly,inp):
+    def newlayer(self, sz,inp=0):
+        ip = self.lin
+        if inp > 0:
+          ip = inp
         self.lyr+=1
         self.bs.append(self.rnd())
         c=0
         for cn in range(sz):
-            for i in range(inp):
+            for i in range(ip):
                 self.ws.append(self.rnd())
-                self.ids.append(f'{str(c)}+{ly}')
+                self.ids.append(f'{str(c)}+{self.lyr-1}')
                 c+=1
         self.leg.append(sz)
+        self.lin = sz
     
     def layer(self, ly, b):
         self.out = []
