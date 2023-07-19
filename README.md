@@ -15,6 +15,7 @@ To setup your neural network, create your main python file and follow this examp
    ann = Neural_Network()
 
    ann.newlayer(1,1)
+   
    ann.newlayer(2)
 
 The function newlayer's arguments work like this:
